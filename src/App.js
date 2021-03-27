@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from './components/Header/Header'
 import HomeView from './view/HomeView'
+import ProductView from './view/ProductView'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Route path='/' component={HomeView} exact />
+          <Route path='/product/:id' component={ProductView}  />
         </Container>
       </main>
     </Router>
