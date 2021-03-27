@@ -6,6 +6,7 @@ import HomeView from './view/HomeView'
 import ProductView from './view/ProductView'
 import LoginView from './view/LoginView'
 import RegisterView from './view/RegisterView'
+import CartView from './view/CartView'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Route path='/' component={HomeView} exact />
+          <Route path='/cart/:id?' component={CartView}  />  
           <Route path='/login' component={LoginView}  />
           <Route path='/register' component={RegisterView}  />
           <Route path='/product/:id' component={ProductView}  />
