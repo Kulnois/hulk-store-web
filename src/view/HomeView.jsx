@@ -21,7 +21,6 @@ const HomeView = () => {
 
     return (
         <>
-            {t('TITLE')}
             <h1>Últimos productos</h1>  
             { loading ? (
                 <Loader />
