@@ -97,7 +97,7 @@ const PlaceOrderView = ({ history }) => {
                 <Col md={4}>
                     <Card>
                         <ListGroup variant='flush'>
-                            <ListGroup.Item>
+                            <ListGroup.Item active>
                                 <h2>Order Summary</h2>
                             </ListGroup.Item>
                             <ListGroup.Item>

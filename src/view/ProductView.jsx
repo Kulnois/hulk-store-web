@@ -24,7 +24,7 @@ const ProductView = ({ history, match }) => {
 
     return (
         <>
-            <Link className='btn btn-ligth my-3' to='/'>Go Back</Link>
+            <Link className='btn btn-light my-3' to='/'>Go Back</Link>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -36,8 +36,8 @@ const ProductView = ({ history, match }) => {
                     </Col>
                     <Col md={3}>
                         <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                                <h2>{product.name}</h2>
+                            <ListGroup.Item variant="info">
+                                <h3>{product.name}</h3>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Rating value={product.rating} />
@@ -53,7 +53,7 @@ const ProductView = ({ history, match }) => {
                     <Col md={3}>
                         <Card>
                             <ListGroup varian='flush'>
-                                <ListGroup.Item>
+                                <ListGroup.Item  active>
                                     <Row>
                                         <Col>
                                             Price:
