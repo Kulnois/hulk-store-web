@@ -1,5 +1,6 @@
 {
   "name": "hulk-store-web",
+  "proxy": "http://127.0.0.1:5001",
   "author": {
     "name": "Cesar Augusto Villegas Salazar",
     "url": "https://kulnois.com/"
