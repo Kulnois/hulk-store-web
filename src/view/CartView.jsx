@@ -1,16 +1,40 @@
 import React, { useEffect } from 'react'
 import {Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, removeFromCart } from '../redux/cart/cart.actions'
 
+import Message from '../components/Message/Message'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 
 const CartView =  ({ match, location, history }) => {
-    const cartItems = []
+    const productId = match.params.id
+    const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    const dispatch = useDispatch()
+
+    const cart = useSelector(state => state.cart)
+
+    const { cartItems } = cart
+
+    useEffect(() => {
+        if (productId) {
+            dispatch(addToCart(productId, qty))
+        }
+    }, [dispatch, productId, qty])
+
+    const removeFromCartHandler = (id) => {
+       dispatch(removeFromCart(id))
+    }
+
+    const checkoutHandler = () => {
+        history.push('/login?redirect=shipping')
+    }
+
     return (
         <Row>
             <Col md={8}>
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0 
-                    ? (<>Sin elementos en el carrito</>)
+                    ? (<Message>Your cart is empty <Link to='/'>Go Back</Link></Message>)
                     : (
                         <ListGroup variant='flush'>
                             {cartItems.map(item => (
@@ -25,7 +49,7 @@ const CartView =  ({ match, location, history }) => {
                                         <Col md={2}>${item.price}</Col>
                                         <Col md={2}>
                                         <Form.Control as='select' value={item.qty} 
-                                                    >
+                                                    onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                                                 {
                                                     [...Array(item.countInStock).keys()].map(x => (
                                                         <option key={x + 1} value={x + 1}>
@@ -37,7 +61,7 @@ const CartView =  ({ match, location, history }) => {
                                         </Col>
                                         <Col md={2}>
                                             <Button type='button' variant='light' 
-                                                ><i className='fas fa-trash'></i>
+                                                onClick={() => removeFromCartHandler(item.product)}><i className='fas fa-trash'></i>
                                             </Button>
                                         </Col>
                                     </Row>
@@ -60,7 +84,7 @@ const CartView =  ({ match, location, history }) => {
                                 type='button' 
                                 className='btn-block' 
                                 disabled={cartItems.length === 0}
-                                >
+                                onClick={checkoutHandler}>
                                 Proceed To Chechouk
                             </Button>
                         </ListGroup.Item>
