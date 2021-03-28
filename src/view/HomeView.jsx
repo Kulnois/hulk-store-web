@@ -5,12 +5,15 @@ import Product from '../components/Product/Product'
 import Message from '../components/Message/Message'
 import Loader from '../components/Loader/Loader'
 import { listProducts } from '../redux/product/product.action'
+import { useTranslation } from 'react-i18next'
 
 const HomeView = () => {
 
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
+    
+	const { t } = useTranslation('app')
 
     useEffect(() => {
         dispatch(listProducts())
@@ -18,6 +21,7 @@ const HomeView = () => {
 
     return (
         <>
+            {t('TITLE')}
             <h1>Últimos productos</h1>  
             { loading ? (
                 <Loader />
