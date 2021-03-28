@@ -29,3 +29,7 @@ h2 {
 .product {  
   height: 480px;
 }
+
+.header {
+  background-color: #202020 !important;
+}
